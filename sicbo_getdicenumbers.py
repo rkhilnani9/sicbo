@@ -140,12 +140,7 @@ def get_zerojson():
                     "totalStake": 0,
                     "totalBets": 9,
                 },
-                {
-                    "runnerType": "SIX",
-                    "oddValue": 16,
-                    "totalStake": 0,
-                    "totalBets": 1,
-                },
+                {"runnerType": "SIX", "oddValue": 16, "totalStake": 0, "totalBets": 1,},
                 {
                     "runnerType": "SEVEN",
                     "oddValue": 13,
@@ -158,18 +153,8 @@ def get_zerojson():
                     "totalStake": 0,
                     "totalBets": 1,
                 },
-                {
-                    "runnerType": "NINE",
-                    "oddValue": 7,
-                    "totalStake": 0,
-                    "totalBets": 1,
-                },
-                {
-                    "runnerType": "TEN",
-                    "oddValue": 7,
-                    "totalStake": 0,
-                    "totalBets": 1,
-                },
+                {"runnerType": "NINE", "oddValue": 7, "totalStake": 0, "totalBets": 1,},
+                {"runnerType": "TEN", "oddValue": 7, "totalStake": 0, "totalBets": 1,},
                 {
                     "runnerType": "ELEVEN",
                     "oddValue": 7,
@@ -231,7 +216,7 @@ async def get_next_card_dt(json_data: Request):
         {
             "round_id": {"$eq": str(ts)},
             "provider_id": {"$eq": "AIGAMING"},
-            "game_id": {"$eq": "AGDT101"},
+            "game_id": {"$eq": "AGSB101"},
             # "bet_req.request_time": {"$lt": str(ts2+20)}
         }
     )
@@ -263,8 +248,6 @@ async def get_next_card_dt(json_data: Request):
                         bets_json[i]["runners"][j]["totalStake"] = betsamount
 
     logger.info(bets_json)
-    resp = requests.post(
-        "http://0.0.0.0:8051/rtp/sicbo", data=json.dumps(bets_json)
-    )
+    resp = requests.post("http://0.0.0.0:8051/rtp/sicbo", data=json.dumps(bets_json))
 
     return resp.json()
