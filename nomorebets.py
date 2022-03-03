@@ -12,9 +12,9 @@ myobj_nomorebets = {
     "result": {
         "eventType": "noMoreBets",
         "gameType": "sicbo",
-        "tableId": "sicbo-1",
-        "roundId": "345968",
-        "ts": str(args.ts),
+        "tableId": "Sicbo-1",
+        "roundId": str(args.ts),
+        "ts": 123,
         "betTime": 123456,
     },
     "sequenceId": 2341566,

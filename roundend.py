@@ -16,14 +16,12 @@ myobj_end = {
     "result": {
         "eventType": "roundEnded",
         "gameType": "sicbo",
-        "tableId": "sicbo-1",
+        "tableId": "Sicbo-1",
         "roundId": str(args.ts),
         "ts": 1234567890,
-        "diceNumbers": [
-            {"dice1": dice_numbers.split(",")[0].strip()},
-            {"dice2": dice_numbers.split(",")[1].strip()},
-            {"dice3": dice_numbers.split(",")[2].strip()},
-        ],
+        "diceOne": dice_numbers.split(",")[0].strip(),
+        "diceTwo": dice_numbers.split(",")[1].strip(),
+        "diceThree": dice_numbers.split(",")[2].strip(),
     },
     "sequenceId": 2341566,
 }
