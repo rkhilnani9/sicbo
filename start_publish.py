@@ -1,4 +1,5 @@
 import cv2
+import random
 import subprocess
 import numpy as np
 import glob
@@ -69,10 +70,10 @@ while True:
             k += 1
 
             # Call start bets event here and stop bets after X secs
-            if ix == 0:
-                round_start_script = f"python3 start_event.py --ts {str(ts)}"
-                shlex_bet = shlex.split(round_start_script)
-                subprocess.Popen(shlex_bet, start_new_session=True)
+            # if ix == 0:
+            #     round_start_script = f"python3 start_event.py --ts {str(ts)}"
+            #     shlex_bet = shlex.split(round_start_script)
+            #     subprocess.Popen(shlex_bet, start_new_session=True)
             time.sleep(1 / 38)
             cv2.putText(
                 im, f"Common: {k}", (10, 100), font, 3, (0, 255, 0), 2, cv2.LINE_AA
@@ -84,14 +85,22 @@ while True:
                 im = cv2.imread(impath)
                 p.stdin.write(im.tobytes())
             if ix == (len(common_image_paths) - 100):
-                bet_stop_script = f"python3 nomorebets.py --ts {str(ts)}"
-                shlex_bet = shlex.split(bet_stop_script)
-                subprocess.Popen(shlex_bet, start_new_session=True)
+                # bet_stop_script = f"python3 nomorebets.py --ts {str(ts)}"
+                # shlex_bet = shlex.split(bet_stop_script)
+                # subprocess.Popen(shlex_bet, start_new_session=True)
                 generate_numbers_script = f"python3 gen_frames.py --ts {str(ts)}"
                 shlex_bet = shlex.split(generate_numbers_script)
                 subprocess.Popen(shlex_bet, start_new_session=True)
 
-        dice_numbers = open("sicbo_dice_numbers.txt", "r").read()
+        if m <= 1:
+            dice_numbers = [
+                str(random.randint(1, 6)),
+                str(random.randint(1, 6)),
+                str(random.randint(1, 6)),
+            ]
+        else:
+            dice_numbers = open("sicbo_dice_numbers.txt", "r").read()
+
         dice1 = dice_numbers.split(",")[0].strip()
         dice2 = dice_numbers.split(",")[1].strip()
         dice3 = dice_numbers.split(",")[2].strip()
@@ -100,6 +109,15 @@ while True:
             k += 1
             # Call start bets event here and stop bets after X secs
             im = cv2.imread(impath)
+            # Call start bets event here and stop bets after X secs
+            if ix == 350:
+                cmd3 = f"python3 roundend.py --ts {str(ts)}"
+                cmds3 = shlex.split(cmd3)
+                p5 = subprocess.Popen(cmds3, start_new_session=True)
+            if ix == 400:
+                round_start_script = f"python3 start_event.py --ts {str(ts)}"
+                shlex_bet = shlex.split(round_start_script)
+                subprocess.Popen(shlex_bet, start_new_session=True)
             time.sleep(1 / 38)
             cv2.putText(im, str(k), (10, 100), font, 3, (0, 255, 0), 2, cv2.LINE_AA)
             cv2.putText(im, str(m), (10, 450), font, 3, (0, 255, 0), 2, cv2.LINE_AA)
@@ -110,8 +128,11 @@ while True:
                 im = cv2.imread(impath)
                 p.stdin.write(im.tobytes())
             if ix == len(n_paths) - 100:
-                cmd3 = f"python3 roundend.py --ts {str(ts)}"
-                cmds3 = shlex.split(cmd3)
-                p5 = subprocess.Popen(cmds3, start_new_session=True)
+                bet_stop_script = f"python3 nomorebets.py --ts {str(ts)}"
+                shlex_bet = shlex.split(bet_stop_script)
+                subprocess.Popen(shlex_bet, start_new_session=True)
+                # cmd3 = f"python3 roundend.py --ts {str(ts)}"
+                # cmds3 = shlex.split(cmd3)
+                # p5 = subprocess.Popen(cmds3, start_new_session=True)
     except KeyboardInterrupt:
         p.stdin.close()

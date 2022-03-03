@@ -10,7 +10,7 @@ args = parser.parse_args()
 url = "https://dev-feed.cardcasino.io/api/v1/ai-gaming/events"
 
 
-dice_numbers = open("sicbo_numbers.txt", "r").read()
+dice_numbers = open("sicbo_dice_numbers.txt", "r").read()
 
 myobj_end = {
     "result": {
