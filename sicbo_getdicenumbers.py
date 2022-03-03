@@ -71,7 +71,7 @@ def get_zerojson():
                     "totalBets": 20,
                 },
                 {
-                    "runnerType": "No_TRIPLE",
+                    "runnerType": "NO_TRIPLE",
                     "oddValue": 0,
                     "totalStake": 0,
                     "totalBets": 4,

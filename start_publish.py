@@ -7,15 +7,14 @@ import shlex
 from loguru import logger
 from dice_combinations import DICE_COMBINATIONS
 
-all_numbers = list(range(0, 37))
 
 FPS = 30
 HEIGHT = 540
 WIDTH = 960
-RTMP_URL = "rtmp://vid.heeraexch.com:1935/live/casino1"
+RTMP_URL = "rtmp://vid.heeraexch.com:1935/live/sicbo"
 
 common_image_paths = glob.glob(
-    "/Users/rkhilnan/Desktop/sicbo/content/common_segment/*.jpg"
+    "/Users/rkhilnan/Desktop/awone_docs/sicbo/common_segment/*.jpg"
 )
 common_image_paths = sorted(
     common_image_paths, key=lambda x: int(x.split("/")[-1].split(".")[0])
@@ -25,7 +24,7 @@ common_image_paths = sorted(
 combo_paths = {}
 for combo in all_combinations:
     combo_str = "".join([str(digit) for digit in combo])
-    paths = glob.glob(f"frames/{combo_str}/*.jpg")
+    paths = glob.glob(f"/Users/rkhilnan/Desktop/awone_docs/sicbo/{combo_str}/*.jpg")
     paths = sorted(paths, key=lambda x: int(x.split("/")[-1].split(".")[0]))
     combo_paths[combo_str] = paths
 
