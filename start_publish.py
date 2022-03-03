@@ -70,7 +70,10 @@ while True:
             k += 1
 
             # Call start bets event here and stop bets after X secs
-            # if ix == 0:
+            if ix == 0:
+                bet_stop_script = f"python3 nomorebets.py --ts {str(ts)}"
+                shlex_bet = shlex.split(bet_stop_script)
+                subprocess.Popen(shlex_bet, start_new_session=True)
             #     round_start_script = f"python3 start_event.py --ts {str(ts)}"
             #     shlex_bet = shlex.split(round_start_script)
             #     subprocess.Popen(shlex_bet, start_new_session=True)
@@ -127,10 +130,7 @@ while True:
                 time.sleep(0.3)
                 im = cv2.imread(impath)
                 p.stdin.write(im.tobytes())
-            if ix == len(n_paths) - 100:
-                bet_stop_script = f"python3 nomorebets.py --ts {str(ts)}"
-                shlex_bet = shlex.split(bet_stop_script)
-                subprocess.Popen(shlex_bet, start_new_session=True)
+            # if ix == len(n_paths) - 100:
                 # cmd3 = f"python3 roundend.py --ts {str(ts)}"
                 # cmds3 = shlex.split(cmd3)
                 # p5 = subprocess.Popen(cmds3, start_new_session=True)
