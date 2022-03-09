@@ -23,7 +23,7 @@ common_image_paths = sorted(
 # common_images = [cv2.imread(impath) for impath in common_image_paths]
 
 combo_paths = {}
-for combo in all_combinations:
+for combo in DICE_COMBINATIONS:
     combo_str = "".join([str(digit) for digit in combo])
     paths = glob.glob(f"/Users/rkhilnan/Desktop/awone_docs/sicbo/{combo_str}/*.jpg")
     paths = sorted(paths, key=lambda x: int(x.split("/")[-1].split(".")[0]))
