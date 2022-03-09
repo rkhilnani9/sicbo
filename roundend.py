@@ -19,9 +19,9 @@ myobj_end = {
         "tableId": "Sicbo-1",
         "roundId": str(args.ts),
         "ts": 1234567890,
-        "diceOne": dice_numbers.split(",")[0].strip(),
-        "diceTwo": dice_numbers.split(",")[1].strip(),
-        "diceThree": dice_numbers.split(",")[2].strip(),
+        "diceOne":int(dice_numbers.split(",")[0].strip()),
+        "diceTwo": int(dice_numbers.split(",")[1].strip()),
+        "diceThree": int(dice_numbers.split(",")[2].strip()),
     },
     "sequenceId": 2341566,
 }
