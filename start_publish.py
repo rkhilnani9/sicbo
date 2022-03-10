@@ -132,6 +132,10 @@ while True:
                 time.sleep(0.3)
                 im = cv2.imread(impath)
                 p.stdin.write(im.tobytes())
+        p.stdin.flush()
+    except BrokenPipeError:
+        p.stdin.close()
+        p = subprocess.Popen(command, stdin=subprocess.PIPE)
     except KeyboardInterrupt:
         p.stdin.close()
 
